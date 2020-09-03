@@ -6,9 +6,12 @@ import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -60,7 +63,7 @@ public class MemberAction {
         return result;
         
     }
-    
+
     @RequestMapping(value = "/member/{mid:\\d+}",method = RequestMethod.GET,produces = "application/json;text/plain;charset=UTF-8")
     public @ResponseBody Object get(@PathVariable("mid") int mid){
         Member vo = new Member();
